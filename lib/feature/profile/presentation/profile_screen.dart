@@ -6,7 +6,6 @@ import 'package:thibaudbdx_app/constants/text_font_style.dart';
 import 'package:thibaudbdx_app/gen/colors.gen.dart';
 import 'package:thibaudbdx_app/helpers/ui_helpers.dart';
 
-
 class MoreProfileScreen extends StatefulWidget {
   const MoreProfileScreen({super.key});
 

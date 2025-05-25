@@ -90,19 +90,19 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         isDense: isDense ?? false,
         border: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(4.r),
-          borderSide: borderSide ?? const BorderSide(),
+          borderSide: borderSide ?? const BorderSide(color: Colors.grey),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(4.r),
-          borderSide: borderSide ??  const BorderSide(),
+          borderSide: borderSide ?? const BorderSide(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(4.r),
-            borderSide: borderSide?? const BorderSide(),
+          borderSide: borderSide ?? const BorderSide(color: Colors.grey),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: borderRadius ?? BorderRadius.circular(4.r),
-          borderSide: borderSide ??  const BorderSide(),
+          borderSide: borderSide ?? const BorderSide(color: Colors.grey),
         ),
       ),
     );

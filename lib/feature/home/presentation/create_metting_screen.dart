@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:thibaudbdx_app/common_widget/contact_custom_button_widget.dart';
 import 'package:thibaudbdx_app/common_widget/custom_text_formfield_widget.dart';
 import 'package:thibaudbdx_app/constants/text_font_style.dart';
 import 'package:thibaudbdx_app/gen/assets.gen.dart';
 import 'package:thibaudbdx_app/gen/colors.gen.dart';
 import 'package:thibaudbdx_app/helpers/ui_helpers.dart';
-
-
 
 class CreateMeetingScreen extends StatefulWidget {
   const CreateMeetingScreen({super.key});
@@ -19,7 +17,7 @@ class CreateMeetingScreen extends StatefulWidget {
 }
 
 class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
-  //////////////////////Calender///////////////////////////////
+  ////////////////////// Calendar ///////////////////////////
   final TextEditingController _dateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
@@ -36,8 +34,8 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
       });
     }
   }
-/////////////////////////////Calander//////////////////////
-  ////////////////////////////Or Clock////////////////////
+
+  ////////////////////// Clock ///////////////////////////
   final TextEditingController _timeController = TextEditingController();
   TimeOfDay selectedTime = TimeOfDay.now();
   Future<void> _selectTime(BuildContext context) async {
@@ -52,11 +50,13 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
       });
     }
   }
-  //////////////////////////Clock/////////////////////////
+
+  ////////////////////////////////////////////////////////
   bool _value = false;
   final phoneNumberController = TextEditingController();
   String fullPhoneNumber = '';
   String countryCode = '+1';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,9 +67,11 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 30),
           child: GestureDetector(
+            onTap: () => Navigator.pop(context),
             child: Transform.scale(
-                scale: 2,
-                child: SvgPicture.asset(Assets.icons.bacbutton)),
+              scale: 2,
+              child: SvgPicture.asset(Assets.icons.bacbutton),
+            ),
           ),
         ),
         title: Text('Create Meeting',
@@ -82,30 +84,39 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             UIHelper.verticalSpace(24.h),
+
+            /// Meeting Name
             Text('Meeting Name',
                 style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
             UIHelper.verticalSpace(8.h),
-              const CustomTextFormFieldWidget(
+            const CustomTextFormFieldWidget(
               fillColor: AppColors.cFAFAFA,
               hintTxt: 'Meeting name',
             ),
+
             UIHelper.verticalSpace(24.h),
+
+            /// Description
             Text('Meeting Description',
                 style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
             UIHelper.verticalSpace(8.h),
-             const CustomTextFormFieldWidget(
+            const CustomTextFormFieldWidget(
               fillColor: AppColors.cFAFAFA,
               hintTxt: 'Meeting Description',
             ),
+
             UIHelper.verticalSpace(24.h),
-            Text('Date', style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
+
+            /// Date Picker
+            Text('Date',
+                style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
             UIHelper.verticalSpace(8.h),
             CustomTextFormFieldWidget(
               controller: _dateController,
               fillColor: AppColors.cFAFAFA,
               hintTxt: 'Select Date',
               suffixIcon: Transform.scale(
-                scale: 0.60,
+                scale: 0.6,
                 child: GestureDetector(
                   onTap: () => _selectDate(context),
                   child: Image.asset(
@@ -115,47 +126,52 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
                 ),
               ),
             ),
-            UIHelper.verticalSpace(24.h),
-            Text('Time', style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
-            UIHelper.verticalSpace(8.h),
 
-            // CustomTextFormField for Time selection
+            UIHelper.verticalSpace(24.h),
+
+            /// Time Picker
+            Text('Time',
+                style: TextFontStyle.headline18c3F3B3Bpoppinsw500),
+            UIHelper.verticalSpace(8.h),
             CustomTextFormFieldWidget(
               controller: _timeController,
               fillColor: AppColors.cFAFAFA,
               hintTxt: 'Select Time',
-              suffixIcon: Padding(
-                padding: const EdgeInsets.symmetric(),
-                child: GestureDetector(
-                  onTap: () => _selectTime(context),
-                  child: Transform.scale(
-                    scale: 0.60,
-                    child: SvgPicture.asset(
-                      Assets.icons.clock,
-                      height: 20.h,
-                    ),
+              suffixIcon: GestureDetector(
+                onTap: () => _selectTime(context),
+                child: Transform.scale(
+                  scale: 0.6,
+                  child: SvgPicture.asset(
+                    Assets.icons.clock,
+                    height: 20.h,
                   ),
                 ),
               ),
             ),
+
             UIHelper.verticalSpace(24.h),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4.r),
-              border: Border.all(color: AppColors.cE3E3E3)
-            ),
-            child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: 10.h,horizontal: 12.w),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+            /// Set Reminder
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4.r),
+                border: Border.all(color: AppColors.cE3E3E3),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Set Reminder', style: TextFontStyle.headline18c3F3B3Bpoppinsw500.copyWith(fontSize: 16.sp)),
+                  Text(
+                    'Set Reminder',
+                    style: TextFontStyle.headline18c3F3B3Bpoppinsw500
+                        .copyWith(fontSize: 16.sp),
+                  ),
                   Transform.scale(
                     scale: 1,
                     child: CupertinoSwitch(
-                      activeTrackColor: AppColors.c4CAF50,
-                      inactiveThumbColor: AppColors.cE8F5E9,
-                      thumbColor: AppColors.cE8F5E9,
-                      inactiveTrackColor: AppColors.c4CAF50,
+                      activeColor: AppColors.c4CAF50,
+                      thumbColor: Colors.white,
+                      trackColor: AppColors.cE8F5E9,
                       value: _value,
                       onChanged: (value) {
                         setState(() {
@@ -167,16 +183,29 @@ class _CreateMeetingScreenState extends State<CreateMeetingScreen> {
                 ],
               ),
             ),
-          ),
-             CustomTextFormFieldWidget(
+
+            UIHelper.verticalSpace(24.h),
+
+            /// Reminder Before Time
+            CustomTextFormFieldWidget(
               fillColor: AppColors.cFAFAFA,
               hintTxt: 'Remind Me Before',
-               suffixIcon: Transform.scale(
-                 scale: 0.60,
-                   child: SvgPicture.asset(Assets.icons.arrwback)),
+              suffixIcon: Transform.scale(
+                scale: 0.6,
+                child: SvgPicture.asset(Assets.icons.arrwback),
+              ),
             ),
+
             UIHelper.verticalSpace(24.h),
-            ContactCustomButtonWidget(onTap: () {  }, name1: 'Cancel', name2: 'Save',),
+
+            /// Buttons
+            ContactCustomButtonWidget(
+              onTap: () {
+                // Handle save logic
+              },
+              name1: 'Cancel',
+              name2: 'Save',
+            ),
           ],
         ),
       ),
