@@ -8,10 +8,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:thibaudbdx_app/feature/home/presentation/new_tag_screen.dart';
+import 'package:thibaudbdx_app/feature/packg/presentaion/button.dart';
 import '/helpers/all_routes.dart';
 import 'constants/app_constants.dart';
 
 
+import 'feature/profile/presentation/profile_screen.dart';
 import 'gen/colors.gen.dart';
 import 'helpers/di.dart';
 import 'helpers/helper_methods.dart';
@@ -111,7 +113,7 @@ class UtillScreenMobile extends StatelessWidget {
             navigatorKey: NavigationService.navigatorKey,
             onGenerateRoute: RouteGenerator.generateRoute,
 
-            home:  NewTagScreen(),
+            home:  MoreProfileScreen (),
           ),
         );
       },
